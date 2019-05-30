@@ -2,30 +2,16 @@
 
 function main() {
   let n = parseInt(next());
-  let s = next(), res = '';
-  let i = 0, j = 0, ereased = 0;
+  let s = next();
+  let stack = [], i = 0, res = '';
   for(i = 0; i < n; i++) {
-    if(i == n-1 || s[i+1] !== s[i]) {
-      res += s[i];
-    } else {
-      j = i+1;
-      while(j < n && s[j] === s[i]) {
-        j++;
-      }
-      j--;
-      if((i-ereased)%2) {
-        res += s[i]+s[i];
-        ereased += j-i-1;
-      } else {
-        res += s[i];
-        ereased += j-i;
-      }
-      i = j;
+    if((!stack.length) || s[i] != stack[stack.length-1] || stack.length % 2 == 0) {
+      stack.push(s[i]);
     }
   }
-
-  println(n-res.length+res.length%2);
-  println(res.substr(0, res.length-res.length%2));
+  if(stack.length%2) stack.pop();
+  res = stack.join('');
+  println(n-res.length+'\n'+res);
 }
 
 //process.stdin.resume();
