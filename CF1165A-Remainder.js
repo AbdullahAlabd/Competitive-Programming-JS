@@ -1,14 +1,14 @@
-'use strict'
+'use strict';
 
 function main() {
-  let n, x, y, s;
+  let n = 0, x = 0, y = 0, s = '';
+  let i = 0, toBeChanged = 0;
   n = parseInt(next()), x = parseInt(next()), y = parseInt(next()), s = next();
-  let toBeChanged = 0;
-  for(let i = n-x; i < n; i++) {
+  for(i = n-x; i < n; i++) {
     if(i != n-y-1) {
-      toBeChanged += s[i] == '1';
+      toBeChanged += s[i] === '1';
     } else {
-      toBeChanged += s[i] == '0';
+      toBeChanged += s[i] === '0';
     }
   }
   println(toBeChanged);
