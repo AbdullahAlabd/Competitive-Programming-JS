@@ -1,0 +1,60 @@
+'use strict';
+
+function main() {
+  let n = parseInt(next());
+  let s = next(), res = '';
+  let i = 0, j = 0, ereased = 0;
+  for(i = 0; i < n; i++) {
+    if(i == n-1 || s[i+1] !== s[i]) {
+      res += s[i];
+    } else {
+      j = i+1;
+      while(j < n && s[j] === s[i]) {
+        j++;
+      }
+      j--;
+      if((i-ereased)%2) {
+        res += s[i]+s[i];
+        ereased += j-i-1;
+      } else {
+        res += s[i];
+        ereased += j-i;
+      }
+      i = j;
+    }
+  }
+
+  println(n-res.length+res.length%2);
+  println(res.substr(0, res.length-res.length%2));
+}
+
+//process.stdin.resume();
+process.stdin.setEncoding('ascii');
+
+let input = '';
+process.stdin.on('data', (chunk) => input += chunk);
+
+// next: reads next value from input.
+let inputCursor = 0;
+let next = () => {
+  return inputCursor < input.length ? input[inputCursor++] : ''; 
+};
+
+//print: print one or more space seperated values.
+let print = (...data) => {
+  for(let i = 0; i < data.length; i++) {
+    process.stdout.write(data[i] + (i < data.length - 1 ? ' ' : ''));
+  }
+};
+
+//println: print one or more space seperated values then a line feed.
+let println = (...data) => {
+  print(...data);
+  print('\n');
+};
+
+//after the the input is read.
+process.stdin.on('end', () => {
+    input = input.trim().split(/[\s]+/);
+    main();
+});
