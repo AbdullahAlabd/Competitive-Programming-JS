@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 function main() {
   // main: main function, your code goes here.
@@ -8,7 +8,7 @@ function main() {
 //process.stdin.resume();
 process.stdin.setEncoding('ascii');
 
-let input = "";
+let input = '';
 process.stdin.on('data', (chunk) => input += chunk);
 
 // next: reads next value from input.
